@@ -1,0 +1,43 @@
+<form class="well" (submit)="addTask($event)">
+    <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="title" name="title" placeholder="Add Task" />
+    </div>
+</form>
+<div class="task-list">
+    <div>
+        <div class="col-md-1 col-xs-2">
+        </div>
+        <div class="col-md-3 col-xs-2">
+            <b>TITLE</b>
+        </div>
+        <div class="col-md-2 col-xs-2">
+            <b>UPDATED DATE</b>
+        </div>
+        <div class="col-md-2 col-xs-2">
+            <b>CREATED DATE</b>
+        </div>
+        <div class="col-md-4 col-xs-4">
+        </div>
+        <br>
+        <br>
+    </div>
+    <div *ngFor="let task of tasks">
+        <div class="col-md-1 col-xs-2">
+            <input type="checkbox" [checked]="task.isDone" (click)="updateStatus(task)">
+        </div>
+        <div class="col-md-3 col-xs-2">
+            {{task.title}}
+        </div>
+        <div class="col-md-2 col-xs-2">
+            {{task.updated_at | date:'dd/MM/yyyy'}}
+        </div>
+        <div class="col-md-2 col-xs-2">
+            {{task.created_at | date:'dd/MM/yyyy'}}
+        </div>
+        <div class="col-md-4 col-xs-4">
+            <input type="button" value="Delete" (click)="deleteTask(task._id)" class="btn btn-danger">
+        </div>
+        <br>
+        <br>
+    </div>
+</div>
